@@ -1,0 +1,54 @@
+// Write a program in which you create and use a class called Point, with two fields of type double (e.g. x, y) and the
+// following methods:
+// distanceTo(Point): calculates the distance to another point.
+// distanceToOrigin(): calculates the distance to the origin. Implement it by calling the first method.
+// moveTo(double x, double y): changes the coordinates of this point to be the given parameters x and y.
+// moveTo(Point): changes the coordinates of this point to move where the given point is.
+
+Point p1 = new Point();
+p1.x = 23.5;
+p1.y = 28.5;
+
+Point p2 = new Point();
+p2.x = 332.1;
+p2.y = 132.4;
+
+println("Distance from p1 to p2: " + p1.distanceTo(p2));
+println("Distance from p1 to origin: " + p1.distanceToOrigin());
+p1.whereAmI();
+Point p3 = new Point();
+p3.moveTo(p1);
+p1.moveTo(p2);
+p1.whereAmI();
+p1.moveTo(p3.x, p3.y);
+p1.whereAmI();
+
+class Point{
+	double x = 0.0;
+	double y = 0.0;
+
+	public double distanceTo(Point p2){
+		double a = this.x - p2.x;
+        double b = this.y - p2.y;        
+        return java.lang.Math.sqrt((a * a) + (b * b));
+	}
+	
+	public double distanceToOrigin(){
+		return this.distanceTo(new Point());
+	}
+	
+	public void moveTo(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void moveTo(Point p2){
+		this.x = p2.x;
+		this.y = p2.y;
+	}
+	
+	public void whereAmI(){
+		println("p1 is now at (" + String.valueOf(this.x) + "," + String.valueOf(this.y) + ")");
+	}
+			
+}
